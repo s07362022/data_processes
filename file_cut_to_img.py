@@ -15,6 +15,7 @@ class FrameExtractor():
         self.vid_cap = cv2.VideoCapture(video_path)
         self.n_frames = int(self.vid_cap.get(cv2.CAP_PROP_FRAME_COUNT))
         self.fps = int(self.vid_cap.get(cv2.CAP_PROP_FPS))
+        print("fps=",self.fps)
         
     def get_video_duration(self):
         duration = self.n_frames/self.fps
