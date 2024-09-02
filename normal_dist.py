@@ -2,9 +2,11 @@ import numpy as np
 import plotly.graph_objs as go
 from scipy.stats import multivariate_normal
 
-# 示例的 xy 座標數據
+# 示例的 xy 座標數據 (增加數據點以更好地展示分佈)
 xy = np.array([[10, 1], [12, 2], [14, 3], [16, 4], [18, 5],
-               [20, 6], [22, 7], [24, 8], [26, 9], [28, 10]])
+               [20, 6], [22, 7], [24, 8], [26, 9], [28, 10],
+               [15, 3], [13, 4], [17, 6], [19, 7], [21, 5],
+               [23, 8], [25, 9], [27, 10], [29, 11], [30, 12]])
 
 # 計算 xy 的均值和協方差矩陣
 mu = np.mean(xy, axis=0)
@@ -14,8 +16,8 @@ cov = np.cov(xy, rowvar=False)
 rv = multivariate_normal(mu, cov)
 
 # 生成網格數據以計算PDF
-x_vals = np.linspace(min(xy[:, 0]), max(xy[:, 0]), 100)
-y_vals = np.linspace(min(xy[:, 1]), max(xy[:, 1]), 100)
+x_vals = np.linspace(min(xy[:, 0]) - 5, max(xy[:, 0]) + 5, 100)
+y_vals = np.linspace(min(xy[:, 1]) - 5, max(xy[:, 1]) + 5, 100)
 X, Y = np.meshgrid(x_vals, y_vals)
 pos = np.dstack((X, Y))
 Z = rv.pdf(pos)
